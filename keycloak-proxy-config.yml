@@ -1,0 +1,22 @@
+keycloak-host: auth.theboss.io
+keycloak-realm: BOSS
+upstream: https://colocard.thebossdev.io
+resources:
+- uri: ^/*
+  methods:
+  - OPTIONS
+  whitelisted: true
+- uri: ^/*
+  methods:
+  - GET
+  - HEAD
+  - POST
+  - PUT
+  - DELETE
+  - PATCH
+  users:
+  - cabishop
+  - will
+  - downsjt1
+  - miller
+  - j6m8

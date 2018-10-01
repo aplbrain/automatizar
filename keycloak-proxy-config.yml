@@ -1,6 +1,6 @@
 keycloak-host: auth.theboss.io
 keycloak-realm: BOSS
-upstream: https://colocard.thebossdev.io
+upstream: http://colocard
 resources:
 - uri: ^/*
   methods:

@@ -16,14 +16,16 @@ services:
       LETSENCRYPT_HOST: ${COLOCARD_LETSENCRYPT_HOST}
       LETSENCRYPT_EMAIL: ${COLOCARD_LETSENCRYPT_EMAIL}
     volumes:
-      - ./keycloak-proxy-config.yml:/etc/keycloak-proxy.js/production.yml
+      - ./keycloak-proxy-config.yml:/etc/keycloak-proxy.js/production.yml:ro
   colocard:
     image: 256215146792.dkr.ecr.us-east-1.amazonaws.com/colocar/colocard
     restart: unless-stopped
     depends_on:
       - mongodb
     environment:
-      NODE_ENV: compose
+      NODE_ENV: production
+    volumes:
+      - ./colocard-config.json:/etc/colocard/production.json:ro
   nginx-web:
     image: nginx:alpine
     container_name: colocard-nginx-web

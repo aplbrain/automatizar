@@ -6,7 +6,7 @@ services:
     volumes:
       - colocard-data:/data/db
   keycloak-proxy:
-    image:
+    image: 256215146792.dkr.ecr.us-east-1.amazonaws.com/colocar/keycloak-proxy.js
     restart: unless-stopped
     depends_on:
       - mongodb

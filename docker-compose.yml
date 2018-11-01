@@ -76,6 +76,6 @@ services:
     environment:
       ARCHIVE_NAME: colocard-data-backup.gz
       MONGO_HOST: mongodb
-      S3_NAME: colocard-data
+      S3_BUCKET: colocard-data
 volumes:
   colocard-data:

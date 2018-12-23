@@ -1,0 +1,51 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo:3.6
+    restart: unless-stopped
+    networks:
+      - colocard
+    volumes:
+      - mongo-data:/data/db
+  keycloak-proxy:
+    image: 256215146792.dkr.ecr.us-east-1.amazonaws.com/colocar/keycloak-proxy.js
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      VIRTUAL_HOST: ${COLOCARD_VIRTUAL_HOST}
+      LETSENCRYPT_HOST: ${COLOCARD_LETSENCRYPT_HOST}
+      LETSENCRYPT_EMAIL: ${COLOCARD_LETSENCRYPT_EMAIL}
+    networks:
+      - colocard
+    volumes:
+      - ./configs/keycloak-proxy-config.yml:/etc/keycloak-proxy.js/production.yml:ro
+    depends_on:
+      - mongodb
+  colocard:
+    image: 256215146792.dkr.ecr.us-east-1.amazonaws.com/colocar/colocard
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+    networks:
+      - colocard
+    volumes:
+      - ./configs/colocard-config.json:/etc/colocard/production.json:ro
+    depends_on:
+      - mongodb
+  mongo-grove:
+    image: 256215146792.dkr.ecr.us-east-1.amazonaws.com/colocar/mongo-grove
+    container_name: colocard-mongo-grove
+    restart: unless-stopped
+    environment:
+      ARCHIVE_NAME: colocard-data-backup.gz
+      MONGO_HOST: mongodb
+      S3_BUCKET: colocard-data
+    networks:
+      - colocard
+    depends_on:
+      - mongodb
+networks:
+  colocard:
+    external: true
+volumes:
+  mongo-data:

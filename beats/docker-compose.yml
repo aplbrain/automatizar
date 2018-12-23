@@ -1,0 +1,19 @@
+version: "3"
+services:
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:6.5.2
+    restart: unless-stopped
+    command: ["-e", "-strict.perms=false"]
+    user: root
+    networks:
+      - colocard
+      - elk
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/lib/docker/containers/:/var/lib/docker/containers/:ro
+      - ./configs/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+networks:
+  colocard:
+    external: true
+  elk:
+    external: true

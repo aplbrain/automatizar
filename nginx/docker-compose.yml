@@ -42,10 +42,10 @@ services:
       - colocard
       - elk
     volumes:
-      - ${COLOCARD_NGINX_FILES_PATH:-./.colocard}/conf.d:/etc/nginx/conf.d
-      - ${COLOCARD_NGINX_FILES_PATH:-./.colocard}/vhost.d:/etc/nginx/vhost.d
-      - ${COLOCARD_NGINX_FILES_PATH:-./.colocard}/html:/usr/share/nginx/html
-      - ${COLOCARD_NGINX_FILES_PATH:-./.colocard}/certs:/etc/nginx/certs:rw
+      - ${NGINX_FILES_PATH:-./.nginx}/conf.d:/etc/nginx/conf.d
+      - ${NGINX_FILES_PATH:-./.nginx}/vhost.d:/etc/nginx/vhost.d
+      - ${NGINX_FILES_PATH:-./.nginx}/html:/usr/share/nginx/html
+      - ${NGINX_FILES_PATH:-./.nginx}/certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       NGINX_DOCKER_GEN_CONTAINER: nginx-gen

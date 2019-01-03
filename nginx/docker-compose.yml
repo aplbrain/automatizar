@@ -38,6 +38,9 @@ services:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: nginx-letsencrypt
     restart: unless-stopped
+    networks:
+      - colocard
+      - elk
     volumes:
       - ${COLOCARD_NGINX_FILES_PATH:-./.colocard}/conf.d:/etc/nginx/conf.d
       - ${COLOCARD_NGINX_FILES_PATH:-./.colocard}/vhost.d:/etc/nginx/vhost.d

@@ -42,10 +42,9 @@ All configuration files are stored under the `configs` directory. Currently, thi
 
 Project location: `nginx/`
 
-The nginx service set is defined in the `docker-compose.yml` file under the `nginx` directory. This service set is responsible for acting as a reverse proxy and TLS endpoint for the colocard and elk service sets. Three services run: an nginx web server; docker-gen, which automatically generates the reverse proxy configurations for nginx; and letsencrypt-nginx-proxy-companion, which automatically generates TLS certificates using LetsEncrypt for each virtual host. This service set connects to both
-the colocard and elk networks.
+The NGINX service set is defined in the `docker-compose.yml` file under the `nginx` directory. This service set is responsible for acting as a reverse proxy and TLS endpoint for the colocard and elk service sets. Three services run: an NGINX web server; docker-gen, which automatically generates the reverse proxy configurations for NGINX; and letsencrypt-nginx-proxy-companion, which automatically generates TLS certificates using LetsEncrypt for each virtual host. This service set connects to both the colocard and elk networks.
 
-All configuration files are stored under the `configs` directory. Currently, this includes the docker-gen nginx template file, and a proxy-wide nginx configuration file. As of now, the nginx configuration file must be manually copied to docker-mounted `conf.d` directory.
+All configuration files are stored under the `configs` directory. Currently, this includes the docker-gen NGINX template file, and a proxy-wide NGINX configuration file. As of now, the NGINX configuration file must be manually copied to docker-mounted `conf.d` directory.
 
 ### Elastic Beats Service Set
 

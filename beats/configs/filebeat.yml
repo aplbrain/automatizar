@@ -2,63 +2,7 @@ name: colocard-filebeat
 filebeat.autodiscover:
   providers:
     - type: docker
-      templates:
-        - condition:
-            contains:
-              docker.container.image: colocard
-          config:
-            - type: docker
-              containers.ids:
-                - "${data.docker.container.id}"
-              json.key_under_root: true
-              json.add_error_key: true
-        - condition:
-            contains:
-              docker.container.image: keycloak-proxy.js
-          config:
-            - type: docker
-              containers.ids:
-                - "${data.docker.container.id}"
-              json.key_under_root: true
-              json.add_error_key: true
-        - condition:
-            contains:
-              docker.container.image: mongo-grove
-          config:
-            - type: docker
-              containers.ids:
-                - "${data.docker.container.id}"
-        - condition:
-            contains:
-              docker.container.image: mongo:3.6
-          config:
-            - module: mongodb
-              log:
-                input:
-                  type: docker
-                  containers.ids:
-                    - "${data.docker.container.id}"
-        - condition:
-            contains:
-              docker.container.image: docker-gen
-          config:
-            - type: docker
-              containers.ids:
-                - "${data.docker.container.id}"
-        - condition:
-            contains:
-              docker.container.image: nginx
-          config:
-            - module: nginx
-              access:
-                input:
-                  type: docker
-                  containers.ids:
-                    - "${data.docker.container.id}"
-              error:
-                input:
-                  type: docker
-                  containers.ids:
-                    - "${data.docker.container.id}"
+      hints.enabled: true
+      hints.default_config.enabled: false
 output.logstash:
   hosts: ["logstash:5044"]

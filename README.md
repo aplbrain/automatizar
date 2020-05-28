@@ -81,13 +81,13 @@ docker-compose up -d
 When you launch the elastic stack service set for the first time, several commands must be run to initialize elasticsearch and kibana to optimally work with the beats defined in the elastic beats service stack. Run the following commands:
 
 ```sh
-docker run --rm --network=elk docker.elastic.co/beats/filebeat:6.5.2 setup --template \
+docker run --rm --network=elk docker.elastic.co/beats/filebeat:7.7.0 setup --index-management \
     -E output.logstash.enabled=false \
     -E 'output.elasticsearch.hosts=["elasticsearch:9200"]'
-docker run --rm --network=elk docker.elastic.co/beats/filebeat:6.5.2 setup -e \
+docker run --rm --network=elk docker.elastic.co/beats/filebeat:7.7.0 setup -e \
     -E output.logstash.enabled=false \
     -E 'output.elasticsearch.hosts=["elasticsearch:9200"]' \
-    -E setup.kibana.host=kibana:5601
+    -E setup.kibana.host="kibana:5601"
 ```
 
 ### NGINX Service Set First-time Setup
@@ -104,7 +104,3 @@ Once you have copied the config file, restart the nginx container.
 ```sh
 docker-compose restart nginx-web
 ```
-
-## Automated Setup
-
-WIP using Ansible

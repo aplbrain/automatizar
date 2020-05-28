@@ -92,11 +92,13 @@ docker run --rm --network=elk docker.elastic.co/beats/filebeat:7.7.0 setup -e \
 
 ### NGINX Service Set First-time Setup
 
-colocard responses can have very large responses when a user submits a large query. By default, nginx's response buffer size is not large enough to handle queries analysts may sometimes run. Included in the `configs` directory under the nginx project directory is a conf file which greatly increases the default buffer sizes for nginx. Currently, this file must be manually copied to the appropriate directory. Once the nginx service set has been launched, copy the `buffers.conf` file to host-mounted `conf.d` directory. Given default settings, this directory is located under the hidden `.nginx` directory in the nginx project directory. You may need to use sudo to copy the directory:
+colocard responses can have very large responses when a user submits a large query. By default, nginx's response buffer size is not large enough to handle queries analysts may sometimes run. Included in the `configs` directory under the nginx project directory is a conf file which greatly increases the default buffer sizes for nginx. Currently, this file must be manually copied to the appropriate directory. Once the nginx service set has been launched, copy the `buffers.conf` file to `/etc/nginx/conf.d` directory in the nginx container.
 
 ```sh
-sudo cp configs/buffers.conf .nginx/conf.d/
-sudo chmod 0600 .nginx/conf.d/buffers.conf # for good measure
+docker cp configs/buffers.conf nginx-web:/etc/nginx/conf.d/buffers.conf
+# for good measure
+docker exec nginx-web chown root:root /etc/nginx/conf.d/buffers.conf
+docker exec nginx-web chmod 0644 /etc/nginx/conf.d/buffers.conf
 ```
 
 Once you have copied the config file, restart the nginx container.

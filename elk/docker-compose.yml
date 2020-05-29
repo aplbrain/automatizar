@@ -1,7 +1,7 @@
 version: "3"
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
     restart: unless-stopped
     environment:
       discovery.type: single-node
@@ -10,7 +10,7 @@ services:
     volumes:
       - esdata:/usr/share/elasticsearch/data
   logstash:
-    image: docker.elastic.co/logstash/logstash:6.5.2
+    image: docker.elastic.co/logstash/logstash:7.7.0
     restart: unless-stopped
     networks:
       - elk
@@ -19,7 +19,7 @@ services:
     depends_on:
       - elasticsearch
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.5.2
+    image: docker.elastic.co/kibana/kibana:7.7.0
     restart: unless-stopped
     environment:
       VIRTUAL_HOST: ${ELK_VIRTUAL_HOST}

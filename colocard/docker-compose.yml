@@ -49,8 +49,6 @@ services:
     restart: unless-stopped
     labels:
       co.elastic.logs/enabled: true
-      co.elastic.logs/json.keys_under_root: true
-      co.elastic.logs/json.add_error_key: true
     environment:
       ARCHIVE_NAME: colocard-data-backup.gz
       MONGO_HOST: mongodb

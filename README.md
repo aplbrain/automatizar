@@ -18,7 +18,7 @@ Production colocard consists of four sets of services deployed in docker contain
 3. nginx reverse proxy service set
     1. nginx web server
     2. docker-gen
-    3. letsencrypt-nginx-proxy-companion
+    ~~3. letsencrypt-nginx-proxy-companion~~
 4. elastic beats service set
     1. filebeat
 

@@ -39,6 +39,7 @@ services:
       - htpasswd:/etc/nginx/htpasswd:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./configs/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
+  
   nginx-letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: nginx-letsencrypt

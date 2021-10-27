@@ -43,6 +43,8 @@ services:
       - ./configs/colocard-config.json:/etc/colocard/production.json:ro
     depends_on:
       - mongodb
+    # ports:
+    #   - "9005"
   mongo-grove:
     image: 473318664541.dkr.ecr.us-east-1.amazonaws.com/aplbrain/mongo-grove
     container_name: colocard-mongo-grove

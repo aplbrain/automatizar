@@ -23,8 +23,8 @@ services:
     restart: unless-stopped
     environment:
       VIRTUAL_HOST: ${ELK_VIRTUAL_HOST}
-      LETSENCRYPT_HOST: ${ELK_LETSENCRYPT_HOST}
-      LETSENCRYPT_EMAIL: ${ELK_LETSENCRYPT_EMAIL}
+      #LETSENCRYPT_HOST: ${ELK_LETSENCRYPT_HOST}
+      #LETSENCRYPT_EMAIL: ${ELK_LETSENCRYPT_EMAIL}
     networks:
       - elk
     depends_on:

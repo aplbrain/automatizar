@@ -40,11 +40,9 @@ All configuration files are stored under the `configs` directory. Currently, thi
 
 ### NGINX Service Set
 
-Project location: `nginx/`
+REMOVED. Now using:
 
-The NGINX service set is defined in the `docker-compose.yml` file under the `nginx` directory. This service set is responsible for acting as a reverse proxy and TLS endpoint for the colocard and elk service sets. Three services run: an NGINX web server; docker-gen, which automatically generates the reverse proxy configurations for NGINX; and letsencrypt-nginx-proxy-companion, which automatically generates TLS certificates using LetsEncrypt for each virtual host. This service set connects to both the colocard and elk networks.
-
-All configuration files are stored under the `configs` directory. Currently, this includes the docker-gen NGINX template file, and a proxy-wide NGINX configuration file. As of now, the NGINX configuration file must be manually copied to docker-mounted `conf.d` directory.
+https://github.com/evertramos/nginx-proxy-automation
 
 ### Elastic Beats Service Set
 
@@ -57,7 +55,7 @@ The elastic beats service set is defined in the `docker-compose.yml` file under 
 First, create the following Docker networks.
 
 ```sh
-docker network create colocard
+docker network create neuvue
 docker network create elk
 ```
 
@@ -66,8 +64,7 @@ We create custom networks as opposed to letting docker-compose do it for us due 
 Next, we'll begin launching the services. Theoretically, the order the are started in shouldn't matter; however, to be on the safe side, launch them in the following order:
 
 1. elastic stack service set
-2. colocard service set.
-3. nginx service set.
+2. neuvue service set.
 4. elastic beats service set.
 
 All services sets can be started by issuing the following command in their respective project directories:

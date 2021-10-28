@@ -6,14 +6,14 @@ services:
     command: ["-e", "-strict.perms=false", "--modules", "nginx,mongodb"]
     user: root
     networks:
-      - colocard
+      - neuvue
       - elk
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /var/lib/docker/containers/:/var/lib/docker/containers/:ro
       - ./configs/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
 networks:
-  colocard:
+  neuvue:
     external: true
   elk:
     external: true

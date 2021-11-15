@@ -1,6 +1,8 @@
-keycloak-host: auth.theboss.io
+keycloak-host: auth.bossdb.io
 keycloak-realm: BOSS
-upstream: http://colocard:9005
+host: 0.0.0.0
+port: 80
+upstream: http://0.0.0.0:9005
 resources:
   - uri: ^/$
     methods:
@@ -18,49 +20,20 @@ resources:
     methods:
       - OPTIONS
     whitelisted: true
-  - uri: ^/(graphs|nodes|questions|volumes).*
+  - uri: ^/(tasks|points).*
     methods:
       - GET
       - HEAD
       - POST
       - PUT
       - PATCH
-    users:
-      - cabishop
-      - will
-      - downsjt1
-      - miller
-      - j6m8
-      - rivlinp
-      - cordish25
-      - jcampb87
-      - nrafi1
-      - ysalaza1
-      - rm
-      - msanch35
-      - laurentpark
-      - oremor12
-      - kahmed4
-      - justinj
-      - jheiko1
-      - dxenes1
-      - dramsde1
-      - cmentor2
-      - kevintorgas
-      - chamia.dorsey
-      - nyajones
-      - kporte18
-      - michisantangelo
-      - afrazi13
-      - omarti
-      - rrais3
-      - hannahparis
-  - uri: ^/(graphs|nodes|questions|volumes).*
-    methods:
       - DELETE
     users:
-      - cabishop
-      - will
-      - downsjt1
-      - miller
-      - j6m8
+      - joycejm1
+      - lkitche2
+      - lunada1
+      - ramsddc1
+      - roseva1
+      - romerkj1
+      - rtenaza1
+      - xenesd1

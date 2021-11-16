@@ -11,7 +11,7 @@ services:
     volumes:
       - mongo-data:/data/db
   keycloak-proxy:
-    image: aplbrain/keycloakproxy
+    image: 473318664541.dkr.ecr.us-east-1.amazonaws.com/aplbrain/keycloak-proxy
     restart: unless-stopped
     labels:
       co.elastic.logs/enabled: true
@@ -21,8 +21,6 @@ services:
       NODE_ENV: production
       VIRTUAL_HOST: queue.neuvue.io
       LETSENCRYPT_HOST: queue.neuvue.io
-    expose:
-      - 80
     networks:
       - neuvue
     volumes:
@@ -30,14 +28,14 @@ services:
     depends_on:
       - mongodb
   neuvue-queue:
-    #image: 473318664541.dkr.ecr.us-east-1.amazonaws.com/aplbrain/neuvue-queue
-    image: neuvue-test:staging
+    image: 473318664541.dkr.ecr.us-east-1.amazonaws.com/aplbrain/neuvue-queue
     restart: unless-stopped
     labels:
       co.elastic.logs/enabled: true
       co.elastic.logs/json.keys_under_root: true
       co.elastic.logs/json.add_error_key: true
     environment:
+      NODE_ENV: production
       NEUVUEQUEUE_MONGODB_DATABASE: neuvue
       NEUVUEQUEUE_MONGODB_HOST: mongodb
       VIRTUAL_HOST: queue.neuvue.io
@@ -45,7 +43,7 @@ services:
     networks:
       - neuvue
     volumes:
-      - ./configs/neuvue-config.json:/etc/neuvue-queue/default.json:ro
+      - ./configs/neuvue-config.json:/etc/neuvuequeue/production.json:ro
     depends_on:
       - mongodb
   mongo-grove:
@@ -58,6 +56,8 @@ services:
       ARCHIVE_NAME: neuvue-queue-data-backup.gz
       MONGO_HOST: mongodb
       S3_BUCKET: neuvue-queue-data
+    volumes:
+      - ./configs/aws.cfg:/.aws/credentials:ro
     networks:
       - neuvue
     depends_on:

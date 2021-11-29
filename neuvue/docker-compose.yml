@@ -10,25 +10,6 @@ services:
       - neuvue
     volumes:
       - mongo-data:/data/db
-  keycloak-proxy:
-    image: aplbrain/keycloakproxy
-    restart: unless-stopped
-    labels:
-      co.elastic.logs/enabled: true
-      co.elastic.logs/json.keys_under_root: true
-      co.elastic.logs/json.add_error_key: true
-    environment:
-      NODE_ENV: production
-      VIRTUAL_HOST: queue.neuvue.io
-      LETSENCRYPT_HOST: queue.neuvue.io
-    expose:
-      - 80
-    networks:
-      - neuvue
-    volumes:
-      - ./configs/keycloak-proxy-config.yml:/etc/keycloak-proxy.js/production.yml:ro
-    depends_on:
-      - mongodb
   neuvue-queue:
     #image: 473318664541.dkr.ecr.us-east-1.amazonaws.com/aplbrain/neuvue-queue
     image: neuvue-test:staging
@@ -40,8 +21,9 @@ services:
     environment:
       NEUVUEQUEUE_MONGODB_DATABASE: neuvue
       NEUVUEQUEUE_MONGODB_HOST: mongodb
-      VIRTUAL_HOST: queue.neuvue.io
-      LETSENCRYPT_HOST: queue.neuvue.io
+      VIRTUAL_HOST: dev-queue.neuvue.io
+      LETSENCRYPT_HOST: dev-queue.neuvue.io
+
     networks:
       - neuvue
     volumes:

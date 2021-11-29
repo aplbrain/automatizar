@@ -5,8 +5,8 @@
         "port": 27017
     },
     "server": {
-        "host": "127.0.0.1",
+        "host": "0.0.0.0",
         "logLevel": "info",
-        "port": 9005
+        "port": 80
     }
 }

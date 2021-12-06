@@ -23,7 +23,8 @@ services:
       NEUVUEQUEUE_MONGODB_HOST: mongodb
       VIRTUAL_HOST: dev-queue.neuvue.io
       LETSENCRYPT_HOST: dev-queue.neuvue.io
-
+      AUTH0_DOMAIN: dev-oe-jgl7m.us.auth0.com
+      AUTH0_AUDIENCE: https://queue.neuvue.io
     networks:
       - neuvue
     volumes:

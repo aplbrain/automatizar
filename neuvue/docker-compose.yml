@@ -25,6 +25,8 @@ services:
       LETSENCRYPT_HOST: dev-queue.neuvue.io
       AUTH0_DOMAIN: dev-oe-jgl7m.us.auth0.com
       AUTH0_AUDIENCE: https://queue.neuvue.io
+      AUTH0_CLIENTID: PASTECLIENTIDHERE
+      AUTH0CLIENTSECRET: PASTCLIENTSECRETHERE
     networks:
       - neuvue
     volumes:

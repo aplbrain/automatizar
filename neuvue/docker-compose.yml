@@ -9,8 +9,8 @@ services:
       - mongo-data:/data/db
       - /data/archive:/data/archive/
   neuvue-queue:
-    #image: 473318664541.dkr.ecr.us-east-1.amazonaws.com/aplbrain/neuvue-queue
-    image: neuvue-test:staging
+    image: 473318664541.dkr.ecr.us-east-1.amazonaws.com/aplbrain/neuvue-queue:latest
+    #image: neuvue-test:staging
     restart: unless-stopped
     environment:
       NEUVUEQUEUE_MONGODB_DATABASE: neuvue

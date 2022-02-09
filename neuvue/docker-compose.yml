@@ -17,10 +17,10 @@ services:
       NEUVUEQUEUE_MONGODB_HOST: mongodb
       VIRTUAL_HOST: queue.neuvue.io
       LETSENCRYPT_HOST: queue.neuvue.io
-      AUTH0_DOMAIN: dev-oe-jgl7m.us.auth0.com
-      AUTH0_AUDIENCE: https://queue.neuvue.io
-      AUTH0_CLIENTID: BdwlItpSZeMrd2ZJwaVrmn0VILYhmriK
-      AUTH0CLIENTSECRET: 4bT2bWw1QVRtZCdPcIMKEHs1-1ZbapRhVYnAgQsXR4ZStiL-TgJjfnj68QKBAMzU
+      AUTH0_DOMAIN: ${AUTH0_DOMAIN}
+      AUTH0_AUDIENCE: ${AUTH0_AUDIENCE}
+      AUTH0_CLIENTID: ${AUTH0_CLIENTID}
+      AUTH0CLIENTSECRET: ${AUTH0CLIENTSECRET}
     networks:
       - neuvue
     volumes:

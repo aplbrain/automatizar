@@ -3,6 +3,7 @@ services:
   mongodb:
     image: mongo:3.6
     restart: unless-stopped
+    container_name: neuvue-mongodb
     networks:
       - neuvue
     volumes:
@@ -12,6 +13,7 @@ services:
     image: 473318664541.dkr.ecr.us-east-1.amazonaws.com/aplbrain/neuvue-queue:latest
     #image: neuvue-test:staging
     restart: unless-stopped
+    container_name: neuvue-queue
     environment:
       NEUVUEQUEUE_MONGODB_DATABASE: neuvue
       NEUVUEQUEUE_MONGODB_HOST: mongodb
@@ -27,18 +29,18 @@ services:
       - ./configs/neuvue-config.json:/etc/neuvue-queue/default.json:ro
     depends_on:
       - mongodb
-  # mongo-grove:
-  #   image: 473318664541.dkr.ecr.us-east-1.amazonaws.com/aplbrain/mongo-grove
-  #   container_name: neuvue-mongo-grove
-  #   restart: unless-stopped
-  #   environment:
-  #     ARCHIVE_NAME: neuvue-queue-data-backup.gz
-  #     MONGO_HOST: mongodb
-  #     S3_BUCKET: neuvue-queue-data
-  #   networks:
-  #     - neuvue
-  #   depends_on:
-  #     - mongodb
+  mongo-grove:
+    image: 473318664541.dkr.ecr.us-east-1.amazonaws.com/aplbrain/mongo-grove
+    container_name: neuvue-mongo-grove
+    restart: unless-stopped
+    environment:
+      MONGO_HOST: neuvue-mongodb
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+    networks:
+      - neuvue
+    depends_on:
+      - mongodb
 networks:
   neuvue:
     external: true

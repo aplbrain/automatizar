@@ -10,7 +10,7 @@ services:
       - mongo-data:/data/db
       - /data/archive:/data/archive/
   neuvue-queue:
-    image: 473318664541.dkr.ecr.us-east-1.amazonaws.com/aplbrain/neuvue-queue:latest
+    image: 146702968486.dkr.ecr.us-east-1.amazonaws.com/microns/neuvue-queue:latest
     #image: neuvue-test:staging
     restart: unless-stopped
     container_name: neuvue-queue
@@ -30,7 +30,7 @@ services:
     depends_on:
       - mongodb
   mongo-grove:
-    image: 473318664541.dkr.ecr.us-east-1.amazonaws.com/aplbrain/mongo-grove
+    image: 146702968486.dkr.ecr.us-east-1.amazonaws.com/microns/mongo-grove:latest
     container_name: neuvue-mongo-grove
     restart: unless-stopped
     environment:
